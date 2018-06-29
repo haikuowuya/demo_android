@@ -90,7 +90,7 @@ public class NativeAdActivity extends Activity {
 
         //        UpArpuNative upArpuNative = new UpArpuNative(Context,placementid,UpArpuNativeNetworkListener);
 
-        UpArpuRender upArpuRender = new UpArpuRender(this);
+        final UpArpuRender upArpuRender = new UpArpuRender(this);
 
         //        upArapuNatives[0].coerceCleanAllAdCache();
         Map<String,Object> localMap = null;
@@ -101,7 +101,7 @@ public class NativeAdActivity extends Activity {
                     if (nativeAd != null) {
                         mNativeAd = nativeAd;
                         try{
-                            mNativeAd.renderAdView(upArpuNativeAdView);
+                            mNativeAd.renderAdView(upArpuNativeAdView,upArpuRender);
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -116,7 +116,7 @@ public class NativeAdActivity extends Activity {
                     Toast.makeText(NativeAdActivity.this, "load fail...：" + adError.getDesc(),Toast.LENGTH_LONG).show();
 
                 }
-            }, upArpuRender);
+            });
 
             //需要配置额外配置
             localMap = new HashMap<>();
@@ -201,7 +201,7 @@ public class NativeAdActivity extends Activity {
                 if (nativeAd != null) {
                     mNativeAd = nativeAd;
                     try {
-                        mNativeAd.renderAdView(upArpuNativeAdView);
+                        mNativeAd.renderAdView(upArpuNativeAdView,upArpuRender);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
