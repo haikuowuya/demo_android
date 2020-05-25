@@ -12,15 +12,9 @@
 
 **下载地址（Download link）：**<br>
 
-TopOn SDK Unity for Android V5.5.5 <br>
-http://sdk-release.toponad.com/Unity/5.5.5/Unity_Androidv555_20200409.unitypackage  <br>
+<a href="https://docs.toponad.com/#/zh-cn/android/download/package" target="_blank">TopOn Android SDK(中文）</a>
 
-TopOn SDK Unity for iOS V5.5.5 <br>
-http://sdk-release.toponad.com/Unity/5.5.5/Unity_iOSv555_removeUIWebview20200507.unitypackage <br>
-
-TopOn SDK Unity for Android & iOS V5.5.5 <br>
-http://sdk-release.toponad.com/Unity/5.5.5/Unity_Androidv555_iOSv555_removeUIWebview20200507.unitypackage <br>
-
+<a href="https://docs.toponad.com/#/en-us/android/download/package" target="_blank">TopOn Android SDK(English）</a>
 
 
 注意：不要通过GitHub的Download ZIP下载TopOn SDK（Note: Do not download TopOn SDK via Download ZIP on GitHub）
