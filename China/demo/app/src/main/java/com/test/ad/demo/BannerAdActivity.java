@@ -66,7 +66,7 @@ public class BannerAdActivity extends Activity {
             public void onBannerFailed(AdError adError) {
                 Log.i("BannerAdActivity", "onBannerFailed：" + adError.printStackTrace());
                 Toast.makeText(BannerAdActivity.this,
-                        "onBannerFailed",
+                        "onBannerFailed: " + adError.printStackTrace(),
                         Toast.LENGTH_SHORT).show();
             }
 

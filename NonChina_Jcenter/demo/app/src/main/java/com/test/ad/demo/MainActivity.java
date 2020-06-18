@@ -62,13 +62,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        findViewById(R.id.splashBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SplashAdActivity.class));
-            }
-        });
-
         findViewById(R.id.nativeBannerAdBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +73,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, NativeSplashActivity.class));
+            }
+        });
+
+        findViewById(R.id.nativeListBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, NativeListActivity.class));
             }
         });
     }
