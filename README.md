@@ -22,7 +22,7 @@
 
 | Network Name| CURRENT_NETWORK VERSION| SUPPORT_NETWORK_VERSION | P.S. |
 |---|---|---|---|
-|Facebook | 5.9.0| 5.6.0、5.7.1、5.8.0、5.9.0 |   |
+|Facebook | 5.10.0| 5.6.0、5.7.1、5.8.0、5.9.0、5.10.0 |   |
 |Admob | 19.1.0 | 18.3.0、19.1.0 |   |
 |Inmobi | 9.0.6 |  9.0.6 |   |
 |Flurry| 11.5.0 | 11.5.0 |   |
