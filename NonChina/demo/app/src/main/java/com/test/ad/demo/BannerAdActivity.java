@@ -159,6 +159,9 @@ public class BannerAdActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (mBannerView != null) {
+            mBannerView.destroy();
+        }
     }
 
     public int dip2px(float dipValue) {

@@ -2,21 +2,23 @@ package com.test.ad.demo;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.anythink.core.api.ATAdConst;
 import com.anythink.core.api.ATAdInfo;
 import com.anythink.core.api.AdError;
 import com.anythink.nativead.api.ATNative;
+import com.anythink.nativead.api.ATNativeAdRenderer;
 import com.anythink.nativead.api.ATNativeAdView;
 import com.anythink.nativead.api.ATNativeDislikeListener;
 import com.anythink.nativead.api.ATNativeEventListener;
 import com.anythink.nativead.api.ATNativeNetworkListener;
 import com.anythink.nativead.api.NativeAd;
-import com.anythink.network.toutiao.TTATConst;
+import com.anythink.nativead.unitgroup.api.CustomNativeAd;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,8 +80,8 @@ public class NativeListActivity extends Activity {
         rvNative.setLayoutManager(layoutManager);
         mAdapter = new NativeListAdapter(adViewWidth, adViewHeight, data, new NativeListAdapter.OnNativeListCallback() {
             @Override
-            public ATNativeAdView onBindAdView(NativeAd nativeAd, ATNativeAdView atNativeAdView) {
-                return fetchAd(nativeAd, atNativeAdView);
+            public ATNativeAdView onBindAdView(NativeAd nativeAd, ATNativeAdView atNativeAdView, ATNativeAdRenderer<? extends CustomNativeAd> atNativeAdRenderer) {
+                return fetchAd(nativeAd, atNativeAdView, atNativeAdRenderer);
             }
 
             @Override
@@ -88,18 +90,16 @@ public class NativeListActivity extends Activity {
                 mAdapter.addData(mockData);
             }
         });
-        rvNative.setItemViewCacheSize(0);
         rvNative.setAdapter(mAdapter);
-
 
         rvNative.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
                 firstCompletelyVisibleItemPosition = layoutManager.findFirstCompletelyVisibleItemPosition();
@@ -111,8 +111,7 @@ public class NativeListActivity extends Activity {
 
                 if (lastCompletelyVisibleItemPosition % mAdapter.getIntervalAd() == mCheckLoadItemInterval
                         || layoutManager.findFirstVisibleItemPosition() % mAdapter.getIntervalAd() == mCheckLoadItemInterval) {
-                    //check cache, if no cache, start to load ad
-                    checkAndLoadAd();
+//                    checkAndLoadAd();
                 }
 
             }
@@ -214,8 +213,8 @@ public class NativeListActivity extends Activity {
         }
 
         Map<String, Object> localMap = new HashMap<>();
-        localMap.put(TTATConst.NATIVE_AD_IMAGE_WIDTH, adViewWidth);
-        localMap.put(TTATConst.NATIVE_AD_IMAGE_HEIGHT, adViewHeight);
+        localMap.put(ATAdConst.KEY.AD_WIDTH, adViewWidth);
+        localMap.put(ATAdConst.KEY.AD_HEIGHT, adViewHeight);
         mATNative.setLocalExtra(localMap);
 
         //load ad
@@ -234,18 +233,18 @@ public class NativeListActivity extends Activity {
         }
     }
 
-    private ATNativeAdView fetchAd(NativeAd nativeAd, ATNativeAdView atNativeAdView) {
+    private ATNativeAdView fetchAd(NativeAd nativeAd, ATNativeAdView atNativeAdView, ATNativeAdRenderer<? extends CustomNativeAd> atNativeAdRenderer) {
 
         if (nativeAd != null) {
             Log.i(TAG, "fetchAd: startRenderAd");
-            renderAd(nativeAd, atNativeAdView);
+            renderAd(nativeAd, atNativeAdView, atNativeAdRenderer);
 
             return atNativeAdView;
         }
         return null;
     }
 
-    private void renderAd(final NativeAd nativeAd, final ATNativeAdView atNativeAdView) {
+    private void renderAd(final NativeAd nativeAd, final ATNativeAdView atNativeAdView, ATNativeAdRenderer<? extends CustomNativeAd> atNativeAdRenderer) {
         nativeAd.setNativeEventListener(new ATNativeEventListener() {
             @Override
             public void onAdImpressed(ATNativeAdView view, ATAdInfo entity) {
@@ -291,11 +290,9 @@ public class NativeListActivity extends Activity {
             }
         });
 
-        NativeDemoRender nativeDemoRender = new NativeDemoRender(this);
-
         try {
             Log.i(TAG, "native ad start to render ad------------- ");
-            nativeAd.renderAdView(atNativeAdView, nativeDemoRender);
+            nativeAd.renderAdView(atNativeAdView, atNativeAdRenderer);
             nativeAd.prepare(atNativeAdView);
 
         } catch (Exception e) {

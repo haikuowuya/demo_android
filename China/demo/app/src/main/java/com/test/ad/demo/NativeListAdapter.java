@@ -1,5 +1,7 @@
 package com.test.ad.demo;
 
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,11 +9,11 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.anythink.nativead.api.ATNativeAdRenderer;
 import com.anythink.nativead.api.ATNativeAdView;
 import com.anythink.nativead.api.NativeAd;
+import com.anythink.nativead.unitgroup.api.CustomNativeAd;
 
 import java.util.List;
 
@@ -114,6 +116,7 @@ public class NativeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         switch (itemViewType) {
             case TYPE_AD:
                 if (viewHolder instanceof AdViewHolder) {
+                    Log.i(TAG, "onBindViewHolder:" + viewHolder.toString());
                     onBindAdViewHolder((AdViewHolder) viewHolder, position);
                 }
                 break;
@@ -147,7 +150,7 @@ public class NativeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             Log.i(TAG, "onBindAdViewHolder: nativeAd: " + nativeAd + ",   " + position);
 
             if (nativeAd != null && mOnNativeListCallback != null) {
-                mOnNativeListCallback.onBindAdView(nativeAd, viewHolder.mATNativeAdView);
+                mOnNativeListCallback.onBindAdView(nativeAd, viewHolder.mATNativeAdView, viewHolder.nativeDemoRender);
                 mNativeListHelper.putNativeAd(position, nativeAd);
             }
         }
@@ -198,7 +201,7 @@ public class NativeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 return TYPE_AD;
             }
         }
-        Log.i(TAG, "getItemViewType: data " + position);
+//        Log.i(TAG, "getItemViewType: data " + position);
         return TYPE_DATA;
     }
 
@@ -219,12 +222,14 @@ public class NativeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         ATNativeAdView mATNativeAdView;
         ViewGroup mAdContainer;
+        NativeDemoRender nativeDemoRender;
 
         AdViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mATNativeAdView = (ATNativeAdView) itemView;
             mAdContainer = mATNativeAdView.findViewById(R.id.ad_container);
+            nativeDemoRender = new NativeDemoRender(itemView.getContext());
         }
     }
 
@@ -274,8 +279,26 @@ public class NativeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         mOnNativeListCallback = null;
     }
 
+    @Override
+    public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
+        Log.i(TAG, "View recycled:" + holder.getAdapterPosition() + "---holder:" + holder.toString());
+        super.onViewRecycled(holder);
+        if (mNativeListHelper != null && holder instanceof AdViewHolder) {
+            mNativeListHelper.clearView(holder.getAdapterPosition(), ((AdViewHolder) holder).mATNativeAdView);
+        }
+    }
+
+    public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
+        Log.i(TAG, "View onViewAttachedToWindow:" + holder.getAdapterPosition() + "---holder:" + holder.toString());
+    }
+
+    public void onViewDetachedFromWindow(@NonNull RecyclerView.ViewHolder holder) {
+        Log.i(TAG, "View onViewDetachedFromWindow:" + holder.getAdapterPosition() + "---holder:" + holder.toString());
+    }
+
+
     public interface OnNativeListCallback {
-        ATNativeAdView onBindAdView(NativeAd nativeAd, ATNativeAdView atNativeAdView);
+        ATNativeAdView onBindAdView(NativeAd nativeAd, ATNativeAdView atNativeAdView, ATNativeAdRenderer<? extends CustomNativeAd> atNativeAdRenderer);
 
         void onClickLoadMore();
     }

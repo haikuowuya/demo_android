@@ -1,9 +1,8 @@
 package com.test.ad.demo;
 
 import android.os.Build;
+import android.support.multidex.MultiDexApplication;
 import android.webkit.WebView;
-
-import androidx.multidex.MultiDexApplication;
 
 import com.anythink.core.api.ATSDK;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -18,7 +17,7 @@ public class DemoApplicaion extends MultiDexApplication {
     public static final String appKey = "4f7b9ac17decb9babec83aac078742c7";
     public static final String mPlacementId_native_all = "b5aa1fa2cae775";
     public static final String mPlacementId_native_mintegral = "b5aa1fa85b86d5";
-    public static final String mPLacementId_native_automatic_rending_mintegral= "b5ee8aeb8f3458";
+    public static final String mPLacementId_native_automatic_rending_mintegral = "b5ee8aeb8f3458";
     public static final String mPlacementId_native_GDT = "b5ab8590d44f82";
     public static final String mPlacementId_native_toutiao = "b5c2c97629da0d";
     public static final String mPlacementId_native_toutiao_drawer = "b5c355d79ef9be";

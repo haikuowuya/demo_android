@@ -1,5 +1,8 @@
 package com.test.ad.demo;
 
+import android.util.Log;
+
+import com.anythink.nativead.api.ATNativeAdView;
 import com.anythink.nativead.api.NativeAd;
 
 import java.util.ArrayList;
@@ -123,6 +126,17 @@ public class NativeListHelper {
                 if (nativeAd != null) {
                     nativeAd.onPause();
                 }
+            }
+        }
+    }
+
+    public void clearView(int position, ATNativeAdView view) {
+
+        if (mPosition2NativeAdMap.containsKey(position)) {
+            NativeAd nativeAd = mPosition2NativeAdMap.get(position);
+
+            if (nativeAd != null) {
+                nativeAd.clear(view);
             }
         }
     }

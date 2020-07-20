@@ -8,10 +8,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.anythink.core.api.ATAdConst;
 import com.anythink.core.api.ATAdInfo;
 import com.anythink.core.api.AdError;
 import com.anythink.rewardvideo.api.ATRewardVideoAd;
 import com.anythink.rewardvideo.api.ATRewardVideoListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RewardVideoAdActivity extends Activity {
 
@@ -130,7 +134,12 @@ public class RewardVideoAdActivity extends Activity {
     private void init() {
         mRewardVideoAd = new ATRewardVideoAd(this, unitIds[mCurrentSelectIndex]);
         String userid = "test_userid_001";
-        mRewardVideoAd.setUserData(userid, "");
+        String userdata = "test_userdata_001";
+//        mRewardVideoAd.setUserData(userid, userdata);
+        Map<String, Object> localMap = new HashMap<>();
+        localMap.put(ATAdConst.KEY.USER_ID, userid);
+        localMap.put(ATAdConst.KEY.USER_CUSTOM_DATA, userdata);
+        mRewardVideoAd.setLocalExtra(localMap);
         mRewardVideoAd.setAdListener(new ATRewardVideoListener() {
             @Override
             public void onRewardedVideoAdLoaded() {
@@ -164,7 +173,7 @@ public class RewardVideoAdActivity extends Activity {
 
             @Override
             public void onRewardedVideoAdClosed(ATAdInfo entity) {
-                Log.i(TAG, "onRewardedVideoAdClosed:\n" + entity.toString() );
+                Log.i(TAG, "onRewardedVideoAdClosed:\n" + entity.toString());
                 Toast.makeText(RewardVideoAdActivity.this, "onRewardedVideoAdClosed", Toast.LENGTH_SHORT).show();
             }
 
@@ -176,7 +185,7 @@ public class RewardVideoAdActivity extends Activity {
 
             @Override
             public void onReward(ATAdInfo entity) {
-                Log.e(TAG, "onReward:\n" + entity.toString() );
+                Log.e(TAG, "onReward:\n" + entity.toString());
                 Toast.makeText(RewardVideoAdActivity.this, "onReward", Toast.LENGTH_SHORT).show();
             }
         });
