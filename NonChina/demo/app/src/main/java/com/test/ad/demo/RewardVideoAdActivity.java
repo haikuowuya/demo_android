@@ -43,31 +43,33 @@ public class RewardVideoAdActivity extends Activity {
             , DemoApplicaion.mPlacementId_rewardvideo_myoffer
             , DemoApplicaion.mPlacementId_rewardvideo_ogury
             , DemoApplicaion.mPlacementId_rewardvideo_fyber
+            , DemoApplicaion.mPlacementId_rewardvideo_googleAdManager
     };
 
     String unitGroupName[] = new String[]{
             "All network",
-            "facebook",
-            "admob",
-            "inmobi",
-            "flurry",
-            "applovin",
-            "mintegral",
-            "mopub",
-            "chartboost",
-            "tapjoy",
-            "ironsource",
-            "unity3d",
-            "vungle",
-            "adcolony",
-            "appnext",
-            "nend",
-            "maio",
-            "startApp",
-            "superAwesome",
-            "myoffer",
-            "ogury",
-            "fyber"
+            "Facebook",
+            "Admob",
+            "Inmobi",
+            "Flurry",
+            "Applovin",
+            "Mintegral",
+            "Mopub",
+            "Chartboost",
+            "Tapjoy",
+            "Ironsource",
+            "Unity3d",
+            "Vungle",
+            "Adcolony",
+            "Appnext",
+            "Nend",
+            "Maio",
+            "StartApp",
+            "SuperAwesome",
+            "Myoffer",
+            "Ogury",
+            "Fyber",
+            "Google Ad Manager"
     };
 
     RadioGroup mRadioGroup;

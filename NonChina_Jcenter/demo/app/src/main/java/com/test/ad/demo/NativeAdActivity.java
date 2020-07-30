@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -41,22 +43,24 @@ public class NativeAdActivity extends Activity {
             , DemoApplicaion.mPlacementId_native_mopub
             , DemoApplicaion.mPlacementId_native_appnext
             , DemoApplicaion.mPlacementId_native_nend
+            , DemoApplicaion.mPlacementId_native_googleAdManager
 
     };
 
     String unitGroupName[] = new String[]{
             "All network",
-            "facebook",
-            "faceboon native banner",
-            "admob",
-            "inmobi",
-            "flurry",
-            "applovin",
-            "mintegral",
-            "mintegral auto-rending",
-            "mopub",
-            "appnext",
-            "nend"
+            "Facebook",
+            "Faceboon native banner",
+            "Admob",
+            "Inmobi",
+            "Flurry",
+            "Applovin",
+            "Mintegral",
+            "Mintegral auto-rending",
+            "Mopub",
+            "Appnext",
+            "Nend",
+            "Google Ad Manager"
     };
 
     ATNative atNatives[] = new ATNative[unitIds.length];

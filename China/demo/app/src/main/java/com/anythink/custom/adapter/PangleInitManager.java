@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import pl.droidsonroids.gif.GifDrawable;
 
 public class PangleInitManager extends ATInitMediation {
     public static final String TAG = PangleInitManager.class.getSimpleName();

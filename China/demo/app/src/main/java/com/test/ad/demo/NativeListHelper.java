@@ -1,7 +1,5 @@
 package com.test.ad.demo;
 
-import android.util.Log;
-
 import com.anythink.nativead.api.ATNativeAdView;
 import com.anythink.nativead.api.NativeAd;
 

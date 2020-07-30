@@ -1,8 +1,8 @@
 package com.test.ad.demo;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +17,7 @@ import com.anythink.network.baidu.BaiduATConst;
 import com.anythink.splashad.api.ATSplashAd;
 import com.anythink.splashad.api.ATSplashAdListener;
 
-public class SplashAdShowActivity extends Activity implements ATSplashAdListener {
+public class SplashAdShowActivity extends FragmentActivity implements ATSplashAdListener {
     ATSplashAd splashAd;
 
     @Override
@@ -49,6 +49,9 @@ public class SplashAdShowActivity extends Activity implements ATSplashAdListener
 //
 //        atMediationRequestInfo = new BaiduATRequestInfo("e866cfb0", "2058622");
 //        atMediationRequestInfo.setAdSourceId("71609");
+
+//        atMediationRequestInfo  = new KSATRequestInfo("501400010", "5014000234");
+//        atMediationRequestInfo.setAdSourceId("88377");
         splashAd = new ATSplashAd(this, container, unitId, atMediationRequestInfo, this);
 
 

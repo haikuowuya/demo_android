@@ -5,7 +5,6 @@ import android.support.multidex.MultiDexApplication;
 import android.webkit.WebView;
 
 import com.anythink.core.api.ATSDK;
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
 
 /**
@@ -24,6 +23,7 @@ public class DemoApplicaion extends MultiDexApplication {
     public static final String mPlacementId_native_baidu = "b5d148f9f2e47d";
     public static final String mPlacementId_native_kuaishou = "b5e4105d4f21b6";
     public static final String mPlacementId_native_kuaishou_drawer = "b5e5dc4110310f";
+    public static final String mPlacementId_native_oneway = "b5f22761b35766";
 
     //RewardedVideo
     public static final String mPlacementId_rewardvideo_all = "b5b449fb3d89d7";
@@ -67,10 +67,14 @@ public class DemoApplicaion extends MultiDexApplication {
     public static final String mPlacementId_splash_baidu = "b5c05090192a58";
     public static final String mPlacementId_splash_sigmob = "b5d76150bab3ad";
     public static final String mPlacementId_splash_mintegral = "b5ee8ae8611366";
+    public static final String mPlacementId_splash_kuaishou = "b5f22758d9eae6";
 
     @Override
     public void onCreate() {
         super.onCreate();
+//        JacocoHelper.Builder builder = new JacocoHelper.Builder();
+//        builder.setApplication(this).setDebuggable(true);
+//        JacocoHelper.initialize(builder.build());
 
         //Android 9 or above must be set
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -81,7 +85,6 @@ public class DemoApplicaion extends MultiDexApplication {
         }
 
         Stetho.initializeWithDefaults(getApplicationContext());
-        Fresco.initialize(getApplicationContext());
         ATSDK.setNetworkLogDebug(true);
         ATSDK.integrationChecking(getApplicationContext());
 

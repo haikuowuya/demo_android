@@ -38,19 +38,21 @@ public class NativeAdActivity extends Activity {
             , DemoApplicaion.mPlacementId_native_baidu
             , DemoApplicaion.mPlacementId_native_kuaishou
             , DemoApplicaion.mPlacementId_native_kuaishou_drawer
+            , DemoApplicaion.mPlacementId_native_oneway
 
     };
 
     String unitGroupName[] = new String[]{
             "All network",
-            "mintegral",
-            "mintegral auto-rending",
-            "gdt",
-            "toutiao",
-            "toutiao_drawer",
-            "baidu",
-            "kuaishou",
-            "kuaishou-draw"
+            "Mintegral",
+            "Mintegral auto-rending",
+            "GDT",
+            "Toutiao",
+            "Toutiao_drawer",
+            "Baidu",
+            "Kuaishou",
+            "Kuaishou-draw",
+            "Oneway"
     };
 
     ATNative atNatives[] = new ATNative[unitIds.length];
